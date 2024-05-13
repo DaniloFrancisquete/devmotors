@@ -4,9 +4,16 @@ import styles from './styles.module.scss'
  import {useState, useEffect} from 'react'
  import Link from 'next/link'
  import {X, Menu} from 'lucide-react'
+import { MenuProps } from '@/utils/menu.type'
 
- export function Submenu () {
+interface SubMenuProp {
+    menu: MenuProps
+}
+
+ export function Submenu ({menu}: SubMenuProp) {
     const [isOpen, setIsOpen] = useState(false);
+
+    console.log(menu);
 
     useEffect(() => {
 const handleResize = () => {
@@ -39,17 +46,16 @@ if(window.innerWidth > 768){
                 </button>
             )}
 
-            <li>
-                <Link href="/post/pagina-1">
-                Pagina 1 
-                </Link>
-            </li>
 
-            <li>
-            <Link href="/post/pagina-2">
-                Pagina 2
-                </Link>
-            </li>
+
+            {menu.objects.map ( item => (
+                 <li key={item.slug}>
+                 <Link href={`/post/${item.slug}`}>
+                 {item.title}
+                 </Link>
+             </li>
+            ))}
+           
           </ul>
         </section>
         

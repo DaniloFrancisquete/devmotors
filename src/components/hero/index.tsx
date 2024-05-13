@@ -34,9 +34,11 @@ export function Hero({heading, buttonUrl, buttonTitle , bannerUrl, icon}:HeroPro
             priority={true}
             quality={100}
             fill={true}
-
+            sizes="(max-width:700px) 100vw, (max-width:1024px) 75vw, 50vw"
             />
             </div>
+
+          
         </main>
     )
 }
